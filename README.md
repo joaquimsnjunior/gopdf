@@ -1,4 +1,4 @@
-# 📄 GoPDF - Gerador de Relatórios PDF XP Investimentos
+# 📄 GoPDF - Gerador de Relatórios PDF
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=for-the-badge&logo=go)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
