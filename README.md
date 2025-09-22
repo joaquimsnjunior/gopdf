@@ -23,7 +23,7 @@
 
 ## 🎯 Sobre o Projeto
 
-O **GoPDF** é uma aplicação Go desenvolvida para gerar relatórios PDF profissionais que simulam documentos oficiais da XP Investimentos. O sistema utiliza templates HTML customizáveis com dados dinâmicos para criar relatórios de posição consolidada de investimentos.
+O **GoPDF** é uma aplicação Go desenvolvida para gerar relatórios PDF profissionais que simulam documentos oficiais. O sistema utiliza templates HTML customizáveis com dados dinâmicos para criar relatórios de posição consolidada de investimentos.
 
 ### 🌟 Principais Características
 
