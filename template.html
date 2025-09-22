@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relatório XP Investimentos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #2c3e50;
+            background: #ffffff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        
+        .document {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: #ffffff;
+            position: relative;
+            padding-bottom: 60px;
+        }
+        
+        /* Header XP Profissional */
+        .header-xp {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            padding: 20px 25px;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .xp-logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #FFD700;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .company-info {
+            text-align: right;
+            font-size: 9px;
+            line-height: 1.3;
+            color: #e8e8e8;
+            font-weight: 300;
+        }
+        
+        .document-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Seção Cliente Moderna */
+        .client-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-left: 4px solid #FFD700;
+            margin: 0;
+        }
+        
+        .client-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .client-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .client-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .client-value {
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 11px;
+        }
+        
+        /* Data de Posição */
+        .position-date {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 15px 25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Conteúdo Principal */
+        .main-content {
+            padding: 25px;
+        }
+        
+        .section-header {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 3px solid #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Tabela Moderna e Responsiva */
+        .table-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .investments-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+        
+        .investments-table thead {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ffffff;
+        }
+        
+        .investments-table th {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .investments-table th:last-child {
+            border-right: none;
+        }
+        
+        .investments-table tbody tr {
+            border-bottom: 1px solid #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+        
+        .investments-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .investments-table tbody tr:hover {
+            background: #e3f2fd;
+        }
+        
+        .investments-table td {
+            padding: 12px 10px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+        
+        .ativo-name {
+            text-align: left !important;
+            font-weight: 700;
+            color: #2c3e50;
+            font-size: 11px;
+        }
+        
+        .currency {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .positive {
+            color: #27ae60;
+            font-weight: 700;
+        }
+        
+        .negative {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+        
+        /* Resumo Financeiro */
+        .financial-summary {
+            background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid #bdc3c7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .summary-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #FFD700;
+            padding-bottom: 8px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #bdc3c7;
+            font-size: 11px;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 13px;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #34495e;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .summary-value {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        /* Footer Profissional */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
+            padding: 12px 25px;
+            font-size: 9px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .company-info {
+                text-align: center;
+                margin-top: 10px;
+            }
+            
+            .client-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .investments-table {
+                font-size: 9px;
+            }
+            
+            .investments-table th,
+            .investments-table td {
+                padding: 8px 5px;
+            }
+        }
+        
+        @media print {
+            .document {
+                box-shadow: none;
+            }
+            
+            .footer {
+                position: fixed;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <!-- Header XP Investimentos -->
+        <header class="header-xp">
+            <div class="header-container">
+                <div class="xp-logo">XP</div>
+                <div class="company-info">
+                    XP INVESTIMENTOS CCTVM S.A.<br>
+                    CNPJ: 02.332.886/0001-04<br>
+                    Av. Brigadeiro Faria Lima, 3.400 - 10º andar<br>
+                    São Paulo - SP - CEP: 04538-132<br>
+                    Central: 4003-1313
+                </div>
+            </div>
+            <h1 class="document-title">Posição Consolidada de Investimentos</h1>
+        </header>
+
+        <!-- Informações do Cliente -->
+        <section class="client-section">
+            <h2 class="client-title">Dados do Investidor</h2>
+            <div class="client-grid">
+                <div class="client-item">
+                    <span class="client-label">Nome:</span>
+                    <span class="client-value">Joaquim Silva</span>
+                </div>
+                <div class="client-item">
+                    <span class="client-label">CPF:</span>
+                    <span class="client-value">123.456.789-00</span>
+                </div>
+                <div class="client-item">
+                    <span class="client-label">Conta:</span>
+                    <span class="client-value">12345-6</span>
+                </div>
+                <div class="client-item">
+                    <span class="client-label">Assessor:</span>
+                    <span class="client-value">Maria Assessora</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data da Posição -->
+        <div class="position-date">
+            Posição em: 31/12/2024
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <h2 class="section-header">Carteira de Investimentos</h2>
+            
+            <div class="table-container">
+                <table class="investments-table">
+                    <thead>
+                        <tr>
+                            <th>Ativo</th>
+                            <th>Qtd</th>
+                            <th>Preço Médio</th>
+                            <th>Cotação Atual</th>
+                            <th>Valor Investido</th>
+                            <th>Valor Atual</th>
+                            <th>Resultado</th>
+                            <th>Rentabilidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td class="ativo-name">PETR4</td>
+                            <td>100</td>
+                            <td class="currency">R$ 22,45</td>
+                            <td class="currency">R$ 27,30</td>
+                            <td class="currency">R$ 2.245,00</td>
+                            <td class="currency">R$ 2.730,00</td>
+                            <td class="currency positive">
+                                R$ 485,00
+                            </td>
+                            <td class="positive">
+                                21,56%
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="ativo-name">ITUB4</td>
+                            <td>130</td>
+                            <td class="currency">R$ 18,90</td>
+                            <td class="currency">R$ 22,10</td>
+                            <td class="currency">R$ 2.457,00</td>
+                            <td class="currency">R$ 2.873,00</td>
+                            <td class="currency positive">
+                                R$ 416,00
+                            </td>
+                            <td class="positive">
+                                16,92%
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="ativo-name">CDB PREFIXADO</td>
+                            <td>1</td>
+                            <td class="currency">R$ 1.275,60</td>
+                            <td class="currency">R$ 1.318,20</td>
+                            <td class="currency">R$ 1.275,60</td>
+                            <td class="currency">R$ 1.318,20</td>
+                            <td class="currency positive">
+                                R$ 42,60
+                            </td>
+                            <td class="positive">
+                                3,34%
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Resumo Financeiro -->
+            <div class="financial-summary">
+                <h3 class="summary-title">Resumo da Carteira</h3>
+                <div class="summary-item">
+                    <span class="summary-label">Total Investido:</span>
+                    <span class="summary-value currency">R$ 5.977,60</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Valor Atual da Carteira:</span>
+                    <span class="summary-value currency">R$ 6.921,20</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Resultado Total:</span>
+                    <span class="summary-value currency positive">
+                        R$ 943,60
+                    </span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Rentabilidade Total:</span>
+                    <span class="summary-value positive">
+                        15,79%
+                    </span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Relatório gerado automaticamente pelo sistema XP Investimentos em 22/09/2025 01:10:56 | 
+            www.xpi.com.br | Central de Relacionamento: 4003-1313
+        </footer>
+    </div>
+</body>
+</html>
